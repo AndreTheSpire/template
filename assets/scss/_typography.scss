@@ -1,0 +1,192 @@
+@import './functions';
+
+// Font Sizes
+
+$displays: (
+  'large': (
+    'size': 3.25rem,
+    'line-height': 3.5rem
+  ),
+  'small': (
+    'size': 2.75rem,
+    'line-height': 3rem
+  )
+);
+
+$headings: (
+  'h1': (
+    'mobile': (
+      'size': 2.25rem,
+      'line-height': 2.75rem
+    ),
+    'desktop': (
+      'size': 2.5rem,
+      'line-height': 3rem
+    )
+  ),
+  'h2': (
+    'mobile': (
+      'size': 2rem,
+      'line-height': 2.5rem
+    ),
+    'desktop': (
+      'size': 2.25rem,
+      'line-height': 2.75rem
+    )
+  ),
+  'h3': (
+    'mobile': (
+      'size': 1.75rem,
+      'line-height': 2.25rem
+    ),
+    'desktop': (
+      'size': 2rem,
+      'line-height': 2.5rem
+    )
+  ),
+  'h4': (
+    'mobile': (
+      'size': 1.5rem,
+      'line-height': 2rem
+    ),
+    'desktop': (
+      'size': 1.75rem,
+      'line-height': 2.25rem
+    )
+  ),
+  'h5': (
+    'mobile': (
+      'size': 1.25rem,
+      'line-height': 1.75rem
+    ),
+    'desktop': (
+      'size': 1.5rem,
+      'line-height': 2rem
+    )
+  ),
+  'h6': (
+    'mobile': (
+      'size': 1.125rem,
+      'line-height': 1.5rem
+    ),
+    'desktop': (
+      'size': 1.25rem,
+      'line-height': 1.75rem
+    )
+  )
+);
+
+$paragraphs: (
+  'large': (
+    'size': 1.125rem,
+    'line-height': 1.75rem
+  ),
+  'normal': (
+    'size': 1rem,
+    'line-height': 1.5rem
+  ),
+  'small': (
+    'size': 0.875rem,
+    'line-height': 1.25rem
+  ),
+  'xsmall': (
+    'size': 0.75rem,
+    'line-height': 1.25rem
+  )
+);
+
+$overlines: (
+  'normal': (
+    'size': 0.875rem,
+    'line-height': 1.25rem
+  ),
+  'small': (
+    'size': 0.75rem,
+    'line-height': 1.25rem
+  )
+);
+
+@each $key, $size in $displays {
+  .v-application .display-#{$key} {
+    font-size: map-get($size, 'size') !important;
+    line-height: map-get($size, 'line-height') !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+
+@for $i from 1 through 6 {
+  .v-application .heading-#{$i} {
+    font-size: getDeepArray($headings, 'h#{$i}', 'mobile', 'size') !important;
+    line-height: getDeepArray(
+      $headings,
+      'h#{$i}',
+      'mobile',
+      'line-height'
+    ) !important;
+    letter-spacing: -0.02rem !important;
+
+    @media screen and (min-width: 768px) {
+      font-size: getDeepArray(
+        $headings,
+        'h#{$i}',
+        'desktop',
+        'size'
+      ) !important;
+      line-height: getDeepArray(
+        $headings,
+        'h#{$i}',
+        'desktop',
+        'line-height'
+      ) !important;
+    }
+  }
+
+  .v-application h#{$i} {
+    font-size: getDeepArray($headings, 'h#{$i}', 'mobile', 'size');
+    line-height: getDeepArray($headings, 'h#{$i}', 'mobile', 'line-height');
+    letter-spacing: -0.02rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: getDeepArray(
+        $headings,
+        'h#{$i}',
+        'desktop',
+        'size'
+      ) !important;
+      line-height: getDeepArray(
+        $headings,
+        'h#{$i}',
+        'desktop',
+        'line-height'
+      ) !important;
+    }
+  }
+}
+
+@each $key, $size in $paragraphs {
+  .v-application .paragraph-#{$key} {
+    font-size: map-get($size, 'size') !important;
+    line-height: map-get($size, 'line-height') !important;
+  }
+}
+
+@each $key, $size in $overlines {
+  .v-application .overline-#{$key} {
+    font-size: map-get($size, 'size') !important;
+    line-height: map-get($size, 'line-height') !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+  }
+}
+
+// End Font Sizes
+
+// Font weight
+$font-paragraph-normal:2rem;
+$weights: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+@each $value in $weights {
+  .weight--#{$value} {
+    font-weight: $value;
+  }
+}

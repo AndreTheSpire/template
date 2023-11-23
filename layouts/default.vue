@@ -18,7 +18,7 @@
         </div>
       </div>
       </v-col>
-      <v-col cols="7" class="d-flex align-center text-header">Sekolah Yoga </v-col>
+      <v-col cols="7" class="d-flex align-center heading-5 weight--700">Sekolah Yoga </v-col>
     
     </v-row>
     <!-- <v-divider
@@ -53,20 +53,20 @@
     <v-app-bar app v-if="$vuetify.display.smAndDown">
          <v-app-bar-nav-icon  @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     
-    
-      <v-toolbar-title v-if="selectedIndex!=-1" class="text-center text-title">{{routes[selectedIndex].text}}</v-toolbar-title>
-      
-      <v-toolbar-title v-else class="text-center text-title">Profile</v-toolbar-title>
-      <!-- <ProfileHeader v-else :reset="resetindex"/> -->
-      <!-- <NotificationBell /> -->
+    <v-spacer></v-spacer>
+      <!-- <v-toolbar-title v-if="selectedIndex!=-1" class="text-center heading-2 weight--700">{{routes[selectedIndex].text}}</v-toolbar-title> -->
+      <ProfileHeader  v-if="selectedIndex!=-1" :reset="resetindex"/>
+      <v-toolbar-title v-else class="text-center paragraph-normal weight--700 ">Profile</v-toolbar-title>
+        <v-spacer></v-spacer>
+      <NotificationBell />
     </v-app-bar>
     <v-app-bar app v-else>
      <v-app-bar-nav-icon @click.stop="drawer = !drawer">  <v-icon v-if="drawer">mdi-chevron-left</v-icon><v-icon v-else >mdi-chevron-right</v-icon></v-app-bar-nav-icon>
     
-      <v-toolbar-title class="text-title"  v-if="selectedIndex!=-1">{{routes[selectedIndex].text}}</v-toolbar-title>
+      <v-toolbar-title class="heading-2 weight--700"  v-if="selectedIndex!=-1">{{routes[selectedIndex].text}}</v-toolbar-title>
       <v-toolbar-title v-else></v-toolbar-title>
-      <!-- <NotificationBell />
-      <ProfileHeader :reset="resetindex"/> -->
+      <NotificationBell />
+      <ProfileHeader :reset="resetindex"/>
     </v-app-bar>
 
     <v-main>
@@ -87,7 +87,7 @@ export default {
       routes: [
         // { text: 'Home', route: '/home', icon:'mdi-home' },
         { text: 'Evaluasi', route: '/evaluasi',icon:'mdi-clipboard-list-outline' },
-           { text: 'Hasil Evaluasi', route: '/evaluasi/hasilevaluasi',icon:'mdi-file-document-check' },
+        { text: 'Hasil Evaluasi', route: '/evaluasi/hasilevaluasi',icon:'mdi-file-document-check' },
         // Add more menu items as needed
       ],
       selectedIndex: 0, // Index of the selected item
@@ -132,33 +132,33 @@ export default {
 <style lang="scss" scoped>
 .sidenav{
   background-color: $primary-color;
-  color: $secondary-color;
+  color: $neutral-4;
 }
-.text-header{
-  font-size: 24px;
-  font-weight: 700;
-  font-family: 'Open Sans';
-  line-height: 32px;
-  color: white;
-}
-.selected-item {
-  background-color:#0D8DDA; /* Change this to your desired background color */
-}
-.background-container{
-  background-color: #F0F0F0;/* Adjust this property as needed */
-}
-.text-title{
-  font-family: "Open Sans";
-font-size: 28px;
-font-style: normal;
-font-weight: 700;
-line-height: 22px;
-}
-@media (max-width: 40em) {
-  .text-title{
-    font-size: 15px;
-  }
+// .text-header{
+//   font-size: 24px;
+//   font-weight: 700;
+//   font-family: 'Open Sans';
+//   line-height: 32px;
+//   color: white;
+// }
+// .selected-item {
+//   background-color:#0D8DDA; /* Change this to your desired background color */
+// }
+// .background-container{
+//   background-color: #F0F0F0;/* Adjust this property as needed */
+// }
+// .text-title{
+//   font-family: "Open Sans";
+// font-size: 28px;
+// font-style: normal;
+// font-weight: 700;
+// line-height: 22px;
+// }
+// @media (max-width: 40em) {
+//   .text-title{
+//     font-size: 15px;
+//   }
   
-}
+// }
 
 </style>
