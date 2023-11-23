@@ -154,6 +154,8 @@ export default {
       tertinggi: 0,
       profilestore: ProfileStore(),
       confirmmulai: true,
+       pageData: undefined,
+      
       answers: [
         {
           value: "",
@@ -176,6 +178,7 @@ export default {
       ],
     };
   },
+  
   computed: {
     isSSR() {
         console.log(process.server);
@@ -185,6 +188,7 @@ export default {
       // if (!this.$store.state.users.profile.fetched) {
       //   return []
       // }
+      this.fetch();
       const listPairingStore = this.profilestore.profile.listPairings;
       const getCurrentPairing = listPairingStore.find((x) => {
         return x._id === this.$route.query.id;
@@ -195,6 +199,20 @@ export default {
     },
   },
   methods: {
+    async fetch () {
+    let payload = null
+    console.log("masuk fetch isievaluasi");
+      try {
+        payload =await $fetch('/.netlify/functions/evaluation-view')
+      } catch (error) {
+        console.log("gagal total")
+      }
+      console.log("payload ini");
+    console.log(payload);
+    this.pageData = payload
+    console.log("berhasil gak nih?");
+    console.log(this.pageData);
+    },
     cekbtn(index, page) {
       if (page >= 3) {
         if (page <= this.currentPairings.template.items.length - 4) {
@@ -317,6 +335,8 @@ export default {
       console.log(this.answers);
     },
     mounted() {
+       console.log("mounted terjadi wtf");
+      this.fetch();
       if (this.answers.length === 1) {
         this.answers[0].name =
           this.currentPairings.template.items[0].groupId +
@@ -335,6 +355,7 @@ export default {
           });
         }
       }
+      
     },
   },
 };

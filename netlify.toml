@@ -5,6 +5,9 @@
   publish = "dist"
   functions = 'functions'  # directs netlify to where your functions directory is located
 
+[functions]
+  node_bundler = "esbuild"
+
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
   for = "/*"
